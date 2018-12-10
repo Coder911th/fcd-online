@@ -1,0 +1,9 @@
+{
+  "name": "fcd-online-client",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "serve": "npx vue-cli-service serve",
+    "build": "npx vue-cli-service build"
+  }
+}

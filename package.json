@@ -1,0 +1,39 @@
+{
+  "name": "fcd-online",
+  "version": "1.0.0",
+  "main": "server.js",
+  "engines": {
+    "node": "10.x"
+  },
+  "scripts": {
+    "server": "node server/server-core.js",
+    "build": "cd client && npm run build",
+    "dev": "start npm run server && cd client && npm run serve"
+  },
+  "dependencies": {
+    "@vue/cli-plugin-babel": "^3.1.1",
+    "@vue/cli-service": "^3.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "iview": "^3.0.1",
+    "vue": "^2.5.17",
+    "vue-template-compiler": "^2.5.17",
+    "vue-cli-plugin-iview": "^1.0.6"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.1.1",
+    "@vue/cli-service": "^3.1.1",
+    "babel-plugin-import": "^1.8.0",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
