@@ -1,21 +1,16 @@
 <template>
   <div class="Index">
-    <Row>
-      <Col span="10">
-        <ProductInfo :product="selectedProduct" class="Index__block"/>
-      </Col>
-      <Col span="14">
-        <ProductPayment :buyList="buyList" class="Index__block"/>
-      </Col>
-    </Row>
-    <Row>
-      <Col span="10">
-        <ProductSearch @select="selectedProduct = $event" class="Index__block"/>
-      </Col>
-      <Col span="14">
-      
-      </Col>
-    </Row>
+    <div class="Index__aside">
+      <ProductInfo :product="selectedProduct" class="Index__block"/>
+      <ProductPayment :buyList="buyList" class="Index__block"/>
+    </div>
+    <Card class="Index__main Index__block">
+      <Tabs>
+        <TabPane label="Все товары">
+          <ProductSearch @select="selectedProduct = $event"/>
+        </TabPane>
+      </Tabs>
+    </Card>
   </div>
 </template>
 
@@ -48,8 +43,18 @@ export default {
 
 <style>
 .Index {
-  width: 700px;
+  display: flex;
+  width: 900px;
   margin: 0 auto;
+}
+
+.Index__main {
+  flex-grow: 1;
+}
+
+.Index__aside {
+  width: 250px;
+  flex-shrink: 0;
 }
 
 .Index__block {

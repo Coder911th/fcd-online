@@ -1,5 +1,5 @@
 <template>
-  <Card>
+  <div>
     <Input
         clearable
         enter-button
@@ -12,7 +12,7 @@
         no-data-text="Товар не найден"
         style="margin-top: 10px"
         @on-row-click="$emit('select', $event)"/>
-  </Card>
+  </div>
 </template>
 
 <script>

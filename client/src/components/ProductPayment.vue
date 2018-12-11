@@ -1,9 +1,9 @@
 <template>
   <Card>
     <Form>
-      <FormItem label="Стоимость без скидки" :label-width="150">{{ price }} Руб.</FormItem>
-      <FormItem label="Скидка" :label-width="150">{{ discount }} Руб.</FormItem>
-      <FormItem label="К оплате" :label-width="150">{{ totalPrice }} Руб.</FormItem>
+      <Label label="Без скидки">{{ price }} Руб.</Label>
+      <Label label="Скидка">{{ discount }} Руб.</Label>
+      <Label label="К оплате">{{ totalPrice }} Руб.</Label>
     </Form>
     <div class="ProductPayment__buttons">
       <Button
@@ -42,6 +42,7 @@ export default {
 .ProductPayment__buttons {
   display: flex;
   justify-content: flex-end;
+  margin-top: 10px;
 }
 
 .ProductPayment__cancel{
