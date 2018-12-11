@@ -1,18 +1,18 @@
 <template>
-  <div>
+  <div class="Index">
     <Row>
-      <Col>
-        <ProductInfo :product="selectedProduct" style="margin: 10px"/>
+      <Col span="10">
+        <ProductInfo :product="selectedProduct" class="Index__block"/>
       </Col>
-      <Col>
-        
+      <Col span="14">
+        <ProductPayment :buyList="buyList" class="Index__block"/>
       </Col>
     </Row>
     <Row>
-      <Col>
-        <ProductSearch @select="x" style="margin: 10px"/>
+      <Col span="10">
+        <ProductSearch @select="selectedProduct = $event" class="Index__block"/>
       </Col>
-      <Col>
+      <Col span="14">
       
       </Col>
     </Row>
@@ -39,17 +39,20 @@ export default {
         price: 80,
         code: 102302,
         discount: 30
-      }
-    }
-  },
-  methods: {
-    x($event) {
-      this.selectedProduct = $event
+      },
+      buyList: []
     }
   }
 }
 </script>
 
 <style>
+.Index {
+  width: 700px;
+  margin: 0 auto;
+}
 
+.Index__block {
+  margin: 10px;
+}
 </style>

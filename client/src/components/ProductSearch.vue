@@ -1,7 +1,7 @@
 <template>
   <Card>
     <Input
-        search
+        clearable
         enter-button
         v-model="search"
         placeholder="Введите название продукта"/>
@@ -9,6 +9,7 @@
         highlight-row
         :columns="columns"
         :data="filteredProducts"
+        no-data-text="Товар не найден"
         style="margin-top: 10px"
         @on-row-click="$emit('select', $event)"/>
   </Card>

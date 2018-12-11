@@ -41,7 +41,7 @@ module.exports = async function(req, res) {
     return res.send({error: 'Аргументы должны быть переданы в формате JSON'})
   }
 
-  const result = require(`./api/${methodName}.js`)(...args)
+  const result = require(`./api/${methodName}.js`)(...args, res, req)
   const config = {}
   if (result instanceof Error) {
     config.error = result.message

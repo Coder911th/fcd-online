@@ -1,18 +1,16 @@
 <template>
   <Card>
     <p slot="title">{{ product.name }}</p>
-    <Form>
-      <FormItem label="Артикул" :label-width="90">{{ product.code }}</FormItem>
-      <FormItem label="Цена" :label-width="90">{{ product.price }}</FormItem>
-      <FormItem label="Скидка" :label-width="90">{{ product.discount }} %</FormItem>
-      <FormItem label="Количество" :label-width="90">
-        <Input class="ProductInfo__counter" v-model="amount">
-            <Button slot="prepend" icon="md-remove" @click="amount--"></Button>
-            <Button slot="append" icon="md-add" @click="amount++"></Button>
-        </Input>
-      </FormItem>
-      <FormItem label="Сумма" :label-width="90">{{ sum }} Руб.</FormItem>
-    </Form>
+    <Label label="Артикул" :width="80">{{ product.code }}</Label>
+    <Label label="Цена" :width="80">{{ product.price }}</Label>
+    <Label label="Скидка" :width="80">{{ product.discount }} %</Label>
+    <Label label="Количество" :width="80">
+      <Input class="ProductInfo__counter" v-model="amount" size="small">
+          <Button slot="prepend" icon="md-remove" size="small" @click="amount--"></Button>
+          <Button slot="append" icon="md-add" size="small" @click="amount++"></Button>
+      </Input>
+    </Label>
+    <Label label="Сумма" :width="80">{{ sum }} Руб.</Label>
   </Card>
 </template>
 

@@ -1,42 +1,40 @@
 <template>
-  <Row class="auth">
-    <Col>
-      <Card class="auth__window" dis-hover>
-        <p slot="title">Авторизация</p>
-        <Form
-            ref="authForm"
-            :model="authData"
-            :rules="validationRules">
-          <FormItem label="Логин" prop="login">
-            <Input
-                :disabled="waiting"
-                v-model="authData.login"
-                placeholder="Введите логин"
-                @on-enter="auth"/>
-          </FormItem>
-          <FormItem label="Пароль" prop="password">
-            <Input
-                :disabled="waiting"
-                v-model="authData.password"
-                type="password"
-                placeholder="Введите пароль"
-                @on-enter="auth"/>
-          </FormItem>
-          <FormItem>
-            <Button
-                long
-                type="primary"
-                shape="circle"
-                :loading="waiting"
-                @click="auth">
-              <span v-if="waiting">Loading...</span>
-              <span v-else>Войти</span>
-            </Button>
-          </FormItem>
-        </Form>
-      </Card>
-    </Col>
-  </Row>
+  <div class="auth">
+    <Card class="auth__window" dis-hover>
+      <p slot="title">Авторизация</p>
+      <Form
+          ref="authForm"
+          :model="authData"
+          :rules="validationRules">
+        <FormItem label="Логин" prop="login">
+          <Input
+              :disabled="waiting"
+              v-model="authData.login"
+              placeholder="Введите логин"
+              @on-enter="auth"/>
+        </FormItem>
+        <FormItem label="Пароль" prop="password">
+          <Input
+              :disabled="waiting"
+              v-model="authData.password"
+              type="password"
+              placeholder="Введите пароль"
+              @on-enter="auth"/>
+        </FormItem>
+        <FormItem>
+          <Button
+              long
+              type="primary"
+              shape="circle"
+              :loading="waiting"
+              @click="auth">
+            <span v-if="waiting">Loading...</span>
+            <span v-else>Войти</span>
+          </Button>
+        </FormItem>
+      </Form>
+    </Card>
+  </div>
 </template>
 
 <script>
@@ -62,7 +60,11 @@ export default {
     async auth() {
       if (await this.$refs.authForm.validate()) {
         this.waiting = true
-        this.$emit('changePage', '/')
+        if (await query('Authenticate', this.authData.login, this.authData.password)) {
+          this.$emit('changePage', '/')
+        } else {
+          this.waiting = false
+        }
       }
     }
   }
