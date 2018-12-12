@@ -5,10 +5,11 @@
       <ProductPayment :buyList="buyList" class="Index__block"/>
     </div>
     <Card class="Index__main Index__block">
-      <Tabs>
-        <TabPane label="Все товары">
+      <Tabs v-model="selected">
+        <TabPane label="Все товары" name="all-products">
           <ProductSearch @select="selectedProduct = $event"/>
         </TabPane>
+        <TabPane label="Корзина" name="basket">В разработке...</TabPane>
       </Tabs>
     </Card>
   </div>
@@ -35,7 +36,8 @@ export default {
         code: 102302,
         discount: 30
       },
-      buyList: []
+      buyList: [],
+      selected: 'all-products'
     }
   }
 }
@@ -43,16 +45,20 @@ export default {
 
 <style>
 .Index {
+  box-sizing: border-box;
   display: flex;
-  width: 900px;
+  width: 920px;
   margin: 0 auto;
 }
 
 .Index__main {
+  box-sizing: border-box;
+  width: 650px;
   flex-grow: 1;
 }
 
 .Index__aside {
+  box-sizing: border-box;
   width: 250px;
   flex-shrink: 0;
 }
