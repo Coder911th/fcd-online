@@ -9,9 +9,6 @@
       <Button
           type="primary"
           shape="circle">Оплатить</Button>
-      <Button
-          class="ProductPayment__cancel"
-          shape="circle">Отмена</Button>
     </div>
   </Card>
 </template>
@@ -43,9 +40,5 @@ export default {
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
-}
-
-.ProductPayment__cancel{
-  margin-left: 10px;
 }
 </style>

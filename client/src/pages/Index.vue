@@ -1,13 +1,21 @@
 <template>
   <div class="Index">
     <div class="Index__aside">
-      <ProductInfo :product="selectedProduct" class="Index__block"/>
-      <ProductPayment :buyList="buyList" class="Index__block"/>
+      <ProductInfo
+          class="Index__block"
+          :product="selectedProduct"
+          :mode="currentProductMode"
+          @newBuy="onNewBuy"/>
+      <ProductPayment
+          class="Index__block"
+          :buyList="buyList"/>
     </div>
     <Card class="Index__main Index__block">
-      <Tabs v-model="selected">
+      <Tabs v-model="selectedTab">
         <TabPane label="Все товары" name="all-products">
-          <ProductSearch @select="selectedProduct = $event"/>
+          <ProductSearch
+              :hideList="hideList"
+              @select="onSelectedProduct"/>
         </TabPane>
         <TabPane label="Корзина" name="basket">В разработке...</TabPane>
       </Tabs>
@@ -30,14 +38,26 @@ export default {
   },
   data() {
     return {
-      selectedProduct: {
-        name: 'Молоко',
-        price: 80,
-        code: 102302,
-        discount: 30
-      },
+      selectedProduct: null,
       buyList: [],
-      selected: 'all-products'
+      selectedTab: 'all-products',
+      currentProductMode: null
+    }
+  },
+  methods: {
+    onSelectedProduct($event) {
+      this.selectedProduct = $event
+      this.currentProductMode = 'add'
+    },
+    onNewBuy($event) {
+      this.selectedProduct = null
+      this.buyList.push($event)
+      this.currentProductMode = null
+    }
+  },
+  computed: {
+    hideList() {
+      return this.buyList.map(buy => buy.product)
     }
   }
 }

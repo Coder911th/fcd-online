@@ -9,7 +9,7 @@
         highlight-row
         :columns="columns"
         :data="filteredProducts"
-        no-data-text="Товар не найден"
+        no-data-text="Список товаров пуст"
         style="margin-top: 10px"
         @on-row-click="$emit('select', $event)"/>
   </div>
@@ -17,6 +17,12 @@
 
 <script>
 export default {
+  props: {
+    hideList: Array,
+    default() {
+      return []
+    }
+  },
   data() {
     return {
       search: '',
@@ -43,17 +49,19 @@ export default {
   },
   computed: {
     filteredProducts() {
-      return this.products.filter(product => product.name.includes(this.search))
+      return this.products.filter(product =>
+        !this.hideList.find(item => item.id == product.id) &&
+        product.name.includes(this.search))
     }
   },
   beforeMount() {
     // Выкачиваем все товары из БД
     this.products = [
-      {name: 'Молоко', price: 75, code: 102302, discount: 30},
-      {name: 'Мандарины', price: 120, code: 402302, discount: 10},
-      {name: 'Апельсины', price: 80, code: 102302, discount: 5.25},
-      {name: 'Курочка', price: 250, code: 9302, discount: 5},
-      {name: 'Барашек', price: 7500, code: 82302, discount: 0}
+      {id: 1, name: 'Молоко', price: 75, code: 102302, discount: .3},
+      {id: 2, name: 'Мандарины', price: 120, code: 402302, discount: .1},
+      {id: 3, name: 'Апельсины', price: 80, code: 102302, discount: .0525},
+      {id: 4, name: 'Курочка', price: 250, code: 9302, discount: .05},
+      {id: 5, name: 'Барашек', price: 7500, code: 82302, discount: 0}
     ]
   }
 }

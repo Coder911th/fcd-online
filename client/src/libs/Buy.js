@@ -13,6 +13,6 @@ export default class Buy {
   }
 
   getTotalPrice() {
-    return this.getPrice() * getDiscount()
+    return this.getPrice() - this.getDiscount()
   }
 }
