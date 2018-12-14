@@ -15,6 +15,9 @@ export default {
     }
   },
   methods: {
+    updatePageTitle() {
+      document.title = this.page.title || 'Free Cash Desk'
+    },
     // Клиентский роутинг
     // Преобразуем путь в название компонента
     // Vue-компоненты именуются с заглавной буквы
@@ -31,9 +34,10 @@ export default {
       }
 
       if (newState) {
-        history.pushState(null, Page.title || 'Free Cash Desk', target)
+        history.pushState(null, null, target)
       }
       this.page = Page
+      this.updatePageTitle()
     }
   },
   beforeMount() {
@@ -41,6 +45,7 @@ export default {
     window.onpopstate = () => {
       this.goTo(window.location.pathname, false)
       document.body.scrollIntoView()
+      this.updatePageTitle()
     }
     // Загружаем информацию о странице при первой загрузке
     this.goTo(window.location.pathname)

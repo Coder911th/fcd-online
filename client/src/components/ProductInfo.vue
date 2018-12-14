@@ -47,6 +47,7 @@ export default {
   methods: {
     addNewBuy() {
       this.$emit('newBuy', new Buy(this.product, this.amount))
+      this.amount = 1
     },
     removeBuy() {
       this.$emit('removeBuy', this.product)
