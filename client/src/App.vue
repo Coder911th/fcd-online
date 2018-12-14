@@ -23,7 +23,13 @@ export default {
     // Vue-компоненты именуются с заглавной буквы
     goTo(target, newState = true) {
       let pageName = target.slice(1).toLowerCase() || 'index'
-      pageName = pageName[0].toUpperCase() + pageName.slice(1)
+      let paths = pageName.split('/')
+      let lastPath = paths.pop()
+      if (!lastPath) {
+        pageName = require('./pages/NotFound.vue').default
+      } else {
+        pageName = [...paths, lastPath[0].toUpperCase() + lastPath.slice(1)].join('/')
+      }
 
       // Если страница не найдена, показываем шаблон страницы 404
       let Page

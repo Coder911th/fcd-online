@@ -30,6 +30,7 @@ import ProductPayment from '../components/ProductPayment'
 import ProductSearch from '../components/ProductSearch'
 
 export default {
+  title: 'Касса',
   components: {
     ProductInfo,
     ProductBasket,

@@ -1,7 +1,7 @@
 const PRODUCTION = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  baseUrl: PRODUCTION ? 'static' : '',
+  baseUrl: PRODUCTION ? 'static' : '/',
   outputDir: 'build',
   productionSourceMap: false,
   chainWebpack: (config) => {
