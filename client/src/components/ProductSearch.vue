@@ -38,7 +38,7 @@ export default {
         },
         {
           title: 'Артикул',
-          key: 'code'
+          key: 'barcode'
         },
         {
           title: 'Скидка',
@@ -51,17 +51,17 @@ export default {
     filteredProducts() {
       return this.products.filter(product =>
         !this.hideList.find(item => item.id == product.id) &&
-        (product.name.toLowerCase().includes(this.search) || product.code == this.search))
+        (product.name.toLowerCase().includes(this.search) || product.barcode == this.search))
     }
   },
   beforeMount() {
     // Выкачиваем все товары из БД
     this.products = [
-      {id: 1, name: 'Молоко', price: 75, code: 102302, discount: .3},
-      {id: 2, name: 'Мандарины', price: 120, code: 402302, discount: .1},
-      {id: 3, name: 'Апельсины', price: 80, code: 102302, discount: .0525},
-      {id: 4, name: 'Курочка', price: 250, code: 9302, discount: .05},
-      {id: 5, name: 'Барашек', price: 7500, code: 82302, discount: 0}
+      {id: 1, name: 'Молоко', price: 75, barcode: 102302, discount: .3},
+      {id: 2, name: 'Мандарины', price: 120, barcode: 402302, discount: .1},
+      {id: 3, name: 'Апельсины', price: 80, barcode: 102302, discount: .0525},
+      {id: 4, name: 'Курочка', price: 250, barcode: 9302, discount: .05},
+      {id: 5, name: 'Барашек', price: 7500, barcode: 82302, discount: 0}
     ]
   }
 }
