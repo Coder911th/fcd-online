@@ -51,7 +51,7 @@ export default {
     filteredProducts() {
       return this.products.filter(product =>
         !this.hideList.find(item => item.id == product.id) &&
-        product.name.includes(this.search))
+        (product.name.toLowerCase().includes(this.search) || product.code == this.search))
     }
   },
   beforeMount() {
