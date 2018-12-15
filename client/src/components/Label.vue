@@ -35,7 +35,6 @@ export default {
   margin-right: 10px;
   text-align: right;
   color: #808695;
-  /* font-variant: small-caps; */
   flex-shrink: 0;
 }
 

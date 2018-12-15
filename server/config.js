@@ -17,6 +17,10 @@ module.exports = {
     products: {
       read: ['cashier', 'admin'],
       write: ['admin']
-    }
+    },
+    amount_types: {
+      read: ['cashier', 'admin'],
+      write: ['admin']
+    },
   }
 }

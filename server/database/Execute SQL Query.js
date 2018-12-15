@@ -1,7 +1,6 @@
 const query = require('../query');
 
 (async function() {
-  console.log((await query(`
-    select * from sessions
+  console.log((await query(`select * from amount_types
   `)))
 })();

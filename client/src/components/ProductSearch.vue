@@ -6,6 +6,7 @@
         v-model="search"
         placeholder="Введите название продукта"/>
     <Table
+        :loading="loading"
         highlight-row
         :columns="columns"
         :data="filteredProducts"
@@ -16,6 +17,8 @@
 </template>
 
 <script>
+import query from '../libs/query'
+
 export default {
   props: {
     hideList: Array,
@@ -25,6 +28,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       search: '',
       products: [],
       columns: [
@@ -54,15 +58,10 @@ export default {
         product.name.includes(this.search))
     }
   },
-  beforeMount() {
+  async beforeMount() {
     // Выкачиваем все товары из БД
-    this.products = [
-      {id: 1, name: 'Молоко', price: 75, code: 102302, discount: .3},
-      {id: 2, name: 'Мандарины', price: 120, code: 402302, discount: .1},
-      {id: 3, name: 'Апельсины', price: 80, code: 102302, discount: .0525},
-      {id: 4, name: 'Курочка', price: 250, code: 9302, discount: .05},
-      {id: 5, name: 'Барашек', price: 7500, code: 82302, discount: 0}
-    ]
+    this.products = await query('ReadTable', 'products')
+    this.loading = false
   }
 }
 </script>

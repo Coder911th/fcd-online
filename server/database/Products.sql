@@ -1,7 +1,8 @@
 CREATE TABLE amount_types
 (
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL
+  name TEXT NOT NULL,
+	short TEXT NOT NULL
 );
 
 CREATE TABLE products

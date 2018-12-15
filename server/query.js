@@ -13,6 +13,5 @@ const pool = new Pool(DATABASE);
  */
 module.exports = function (executableQuery, ...args) {
   return pool.query(executableQuery, args)
-    .then(res => res.rows)
-    .catch(e => console.error(e));
+    .then(res => res.rows);
 };

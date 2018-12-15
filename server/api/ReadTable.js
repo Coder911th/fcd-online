@@ -12,9 +12,10 @@ module.exports = async function(tableName, id) {
     FROM ${tableName}
   `;
 
-  if (!id) {
+  if (id) {
     query += 'WHERE id = $1'
+    return this.sql(query, id)
   }
 
-  return await this.sql(query, id)
+  return this.sql(query)
 }

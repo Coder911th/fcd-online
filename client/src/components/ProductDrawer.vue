@@ -1,19 +1,34 @@
 <template>
-  <div>
-    <Form>
+  <div class="ProductDrawer">
+    <Spin
+        fix
+        v-if="loading"
+        size="large"/>
+    <Form label-position="left">
       <FormItem label="Штрих-код">
-        <Input v-model="product.barcode"/>
+        <Input v-model="item.barcode"/>
       </FormItem>
       <FormItem label="Название">
-        <Input v-model="product.name"/>
+        <Input v-model="item.name"/>
       </FormItem>
-      <FormItem label="Цена">
-        <Input v-model.number="product.price"/>
+      <FormItem
+          label="Цена"
+          :label-width="60">
+        <InputNumber
+            v-model="item.price"
+            size="small"/> Руб.
       </FormItem>
-      <FormItem label="Скидка">
-        <InputNumber v-model="product.discount"/>
+      <FormItem
+          label="Скидка"
+          :label-width="60">
+        <InputNumber
+            v-model="item.discount"
+            :max="1"
+            :min="0"
+            :step="0.01"
+            size="small"/> %
       </FormItem>
-      <!-- <Select v-model="product.amount_type_id">
+      <!-- <Select v-model="item.amount_type_id">
         <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
       </Select> -->
     </Form>
@@ -21,9 +36,11 @@
 </template>
 
 <script>
+import query  from '../libs/query'
+
 export default {
   props: {
-    product: {
+    item: {
       type: Object,
       default() {
         return {
@@ -36,10 +53,22 @@ export default {
         }
       }
     }
+  },
+  data() {
+    return {
+      loading: true,
+      amount_types: []
+    }
+  },
+  async beforeMount() {
+    this.loading = true
+    this.amount_types = await query('ReadTable', 'amount_types')
   }
 }
 </script>
 
 <style>
-
+.ProductDrawer .ivu-form-item-label {
+  font-size: 13px;
+}
 </style>

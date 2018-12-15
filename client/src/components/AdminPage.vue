@@ -16,7 +16,7 @@
                 type="primary"
                 shape="circle"
                 size="small"
-                @click="newItem"/>
+                @click="createNewItem"/>
           </MenuItem>
           <MenuItem name="/admin/users">
             <Icon type="md-people"/> Пользователи
@@ -27,18 +27,18 @@
                 type="primary"
                 shape="circle"
                 size="small"
-                @click="newItem"/>
+                @click="createNewItem"/>
           </MenuItem>
-          <MenuItem name="/admin/amout_types">
+          <MenuItem name="/admin/amount">
             <Icon type="ios-cafe"/> Типы количеств
             <Button
-                v-if="currentPath == '/admin/amout_types'"
+                v-if="currentPath == '/admin/amount'"
                 class="admin-page__add"
                 icon="md-add"
                 type="primary"
                 shape="circle"
                 size="small"
-                @click="newItem"/>
+                @click="createNewItem"/>
           </MenuItem>
         </Menu>
       </Sider>
@@ -54,11 +54,14 @@
       </Content>
     </Layout>
     <Drawer
-        :title="editingTitle"
         v-model="editing"
-        :width="720"
+        :title="editingTitle"
+        :width="250"
         :mask-closable="false">
-      <component :is="editingTemplate"/>
+      <component
+          :is="editingTemplate"
+          :table="table"
+          @close="onCloseEditing"/>
     </Drawer>
   </div>
 </template>
@@ -84,22 +87,29 @@ export default {
     }
   },
   methods: {
-    newItem() {
+    async updateList() {
+      this.loading = true
+      try {
+        this.items = await query('ReadTable', this.table)
+      } catch(errMessage) {
+        this.$Modal.error({
+            title: 'При чтении данных произошла ошибка',
+            content: errMessage
+        })
+      }
+      this.loading = false
+    },
+    createNewItem() {
       this.editingTitle = 'Создание новой записи'
       this.editing = true
+    },
+    onCloseEditing() {
+      this.editing = false
+      this.updateList()
     }
   },
-  async beforeMount() {
-    this.loading = true
-    try {
-      this.items = await query('ReadTable', this.table)
-    } catch(errMessage) {
-      this.$Modal.error({
-          title: 'При чтении данных произошла ошибка',
-          content: errMessage
-      });
-    }
-    this.loading = false
+  beforeMount() {
+    this.updateList()  
   }
 }
 </script>

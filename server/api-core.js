@@ -52,6 +52,7 @@ module.exports = async function(req, res) {
     }, args)
   } catch(errMessage) {
     config.error = errMessage instanceof Error ? 'Внутренняя ошибка сервера' : errMessage
+    console.log(errMessage)
   }
 
   res.send(config)
