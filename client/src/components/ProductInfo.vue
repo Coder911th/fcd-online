@@ -1,5 +1,5 @@
 <template>
-  <Card>
+  <Card dis-hover>
     <p slot="title">{{ product ? product.name : 'Просматриваемый товар' }}</p>
     <Label label="Артикул" :width="80">{{ product ? product.code : '-' }}</Label>
     <Label label="Цена" :width="80">{{ product ? product.price : '-' }} руб./шт.</Label>

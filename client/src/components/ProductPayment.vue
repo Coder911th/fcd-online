@@ -1,5 +1,5 @@
 <template>
-  <Card>
+  <Card dis-hover>
     <Form>
       <Label label="Без скидки">{{ price }} Руб.</Label>
       <Label label="Скидка">{{ discount }} Руб.</Label>

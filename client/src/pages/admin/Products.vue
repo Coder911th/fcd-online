@@ -1,13 +1,11 @@
-<template>
-  <AdminPage
-      :columns="columns"
-      table="products"/>
-</template>
-
 <script>
+import AdminPage from '../../components/AdminPage'
+
 export default {
+  extends: AdminPage,
   data() {
     return {
+      table: 'products',
       columns: [
         {
           title: 'Идентификатор',

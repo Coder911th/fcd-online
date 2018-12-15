@@ -10,7 +10,7 @@
           class="Index__block"
           :buyList="buyList"/>
     </div>
-    <Card class="Index__main Index__block">
+    <Card class="Index__main Index__block" dis-hover>
       <Tabs v-model="selectedTab">
         <TabPane label="Все товары" name="all-products">
           <ProductSearch
