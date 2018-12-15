@@ -36,4 +36,10 @@ export default {
   color: #515a6e;
   text-align: center;
 }
+
+@media (max-width:570px){
+  .not-found__logo {
+    width: 70%;
+  }
+}
 </style>
