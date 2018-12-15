@@ -1,5 +1,6 @@
 <script>
 import AdminPage from '../../components/AdminPage'
+import ProductDrawer from '../../components/ProductDrawer'
 
 export default {
   title: 'Администратирование',
@@ -7,6 +8,7 @@ export default {
   data() {
     return {
       table: 'products',
+      editingTemplate: ProductDrawer,
       columns: [
         {
           title: 'Идентификатор',

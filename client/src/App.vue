@@ -101,7 +101,7 @@ export default {
   align-items: center;
   justify-content: space-between;
 
-  width: 920px;
+  width: 960px;
   height: 60px;
   margin: 0 auto;
 }
@@ -110,6 +110,7 @@ export default {
   display: flex;
   align-items: center;
   cursor: pointer;
+  padding-left: 20px;
 }
 
 .app__logo {
