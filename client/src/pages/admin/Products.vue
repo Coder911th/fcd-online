@@ -2,6 +2,7 @@
 import AdminPage from '../../components/AdminPage'
 
 export default {
+  title: 'Администратирование',
   extends: AdminPage,
   data() {
     return {

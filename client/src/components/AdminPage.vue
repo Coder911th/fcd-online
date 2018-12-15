@@ -1,7 +1,7 @@
 <template>
   <div class="admin-page">
-    <Layout>
-      <Sider class="admin-page__sider">
+    <Layout class="admin-page__layout">
+      <Sider>
         <Menu
             theme="dark"
             width="auto"
@@ -36,7 +36,6 @@
 import query from '../libs/query'
 
 export default {
-  title: 'Администратирование',
   props: {
     currentPath: String,
     pageTitle: String
@@ -71,12 +70,11 @@ export default {
   margin: 0 auto;
 }
 
-.admin-page__content {
-  margin: 10px;
+.admin-page__layout {
+  padding: 10px;
 }
 
-.admin-page__sider {
-  margin-top: 10px;
-  /* height: calc(100vh - 64px); */
+.admin-page__content {
+  margin-left: 10px;
 }
 </style>
