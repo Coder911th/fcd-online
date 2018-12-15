@@ -1,7 +1,10 @@
 <template>
   <div class="auth">
     <Card class="auth__window" dis-hover>
-      <p slot="title">Аутентификация</p>
+      <div class="auth__logoBlock">
+        <img class="auth__logo" src="../../public/logo_grey.svg" alt="404">
+        <p slot="title" class="auth__title">Аутентификация</p>
+      </div>
       <Form
           ref="authForm"
           :model="authData"
@@ -76,12 +79,27 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #515a6e;
 }
 
 .auth__window {
-  width: 300px;
+  width: 330px;
   margin: 10px;
   position: relative;
+}
+
+.auth__logoBlock {
+  display: flex;
+  align-items: center;
+}
+
+.auth__logo {
+  width: 20%;
+}
+
+.auth__title{
+  margin: 0 0 0 18px;
+  font-size: 28px;
 }
 </style>
 

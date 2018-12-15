@@ -41,8 +41,8 @@ export default {
           key: 'price'
         },
         {
-          title: 'Артикул',
-          key: 'code'
+          title: 'Штрих-код',
+          key: 'barcode'
         },
         {
           title: 'Скидка',
@@ -55,7 +55,7 @@ export default {
     filteredProducts() {
       return this.products.filter(product =>
         !this.hideList.find(item => item.id == product.id) &&
-        product.name.includes(this.search))
+        (product.name.toLowerCase().includes(this.search) || product.barcode == this.search))
     }
   },
   async beforeMount() {
