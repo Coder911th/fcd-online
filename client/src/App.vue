@@ -5,7 +5,7 @@
         <div class="app__menu">
           <div class="app__logoBlock" @click="goTo('/')">
             <div class="app__logo"></div>
-            <div class="app__title">{{ page.title }}</div>
+            <div class="app__title">{{ pageTitle }}</div>
           </div>
           <Menu
               v-if="!page.hideActions"
@@ -29,7 +29,9 @@
               'min-height': page.hideHeader ? '100vh' : 'calc(100vh - 64px)'
             }"
             :is="page"
-            @changePage="goTo($event)"/>
+            :pageTitle="pageTitle"
+            :currentPath="currentPath"
+            @pageChanged="goTo($event)"/>
       </Content>
     </Layout>
   </div>
@@ -40,18 +42,22 @@ export default {
   name: 'app',
   data() {
     return {
+      pageTitle: '',
+      currentPath: '',
       page: null,
       role: 'admin'
     }
   },
   methods: {
     updatePageTitle() {
-      document.title = this.page.title || 'Free Cash Desk'
+      this.pageTitle = this.page.title || 'Free Cash Desk'
+      document.title = this.pageTitle
     },
     // Клиентский роутинг
     // Преобразуем путь в название компонента
     // Vue-компоненты именуются с заглавной буквы
     goTo(target, newState = true) {
+      this.currentPath = target;
       let pageName = target.slice(1).toLowerCase() || 'index'
       let paths = pageName.split('/')
       let lastPath = paths.pop()

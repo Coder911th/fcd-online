@@ -2,14 +2,18 @@
   <div class="admin-page">
     <Layout>
       <Sider class="admin-page__sider">
-        <Menu theme="dark" width="auto" active-name="/products">
-          <MenuItem name="/products">
+        <Menu
+            theme="dark"
+            width="auto"
+            :active-name="currentPath"
+            @on-select="$emit('pageChanged', $event)">
+          <MenuItem name="/admin/products">
             <Icon type="md-pizza"/> Товары
           </MenuItem>
-          <MenuItem name="/users">
+          <MenuItem name="/admin/users">
             <Icon type="md-people"/> Пользователи
           </MenuItem>
-          <MenuItem name="/amout_types">
+          <MenuItem name="/admin/amout_types">
             <Icon type="ios-cafe"/> Типы количеств
           </MenuItem>
         </Menu>
@@ -33,6 +37,10 @@ import query from '../libs/query'
 
 export default {
   title: 'Администратирование',
+  props: {
+    currentPath: String,
+    pageTitle: String
+  },
   data() {
     return {
       table: '',

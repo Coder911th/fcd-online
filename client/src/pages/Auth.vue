@@ -62,7 +62,7 @@ export default {
       if (await this.$refs.authForm.validate()) {
         this.waiting = true
         if (await query('Authenticate', this.authData.login, this.authData.password)) {
-          this.$emit('changePage', '/')
+          this.$emit('pageChanged', '/')
         } else {
           this.waiting = false
         }
