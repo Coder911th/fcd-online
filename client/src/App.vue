@@ -3,8 +3,8 @@
     <Layout>
       <Header v-if="!page.hideHeader">
         <div class="app__menu">
-          <div class="app__logoBlock">
-            <div class="app__logo" @click="goTo('/')"></div>
+          <div class="app__logoBlock" @click="goTo('/')">
+            <div class="app__logo"></div>
             <div class="app__title">{{ page.title }}</div>
           </div>
           <Menu
@@ -103,13 +103,13 @@ export default {
 .app__logoBlock {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .app__logo {
   width: 50px;
   height: 50px;
   background: url(../public/logo.svg) no-repeat center center / auto 100%;
-  cursor: pointer;
 }
 
 .app__title {
