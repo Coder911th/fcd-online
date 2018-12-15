@@ -37,7 +37,7 @@ export default {
           key: 'price'
         },
         {
-          title: 'Артикул',
+          title: 'Штрих-код',
           key: 'barcode'
         },
         {
