@@ -46,10 +46,11 @@
         <Card class="admin-page__content" dis-hover>
           <Table
               highlight-row
-              :columns="columns"
+              :columns="extendedColumns"
               :data="items"
               :no-data-text="noDataText"
-              :loading="loading"/>
+              :loading="loading"
+              @on-row-click="onEdit"/>
           </Card>
       </Content>
     </Layout>
@@ -59,6 +60,8 @@
         :width="250"
         :mask-closable="false">
       <component
+          v-if="editing"
+          :id="editingItemId"
           :is="editingTemplate"
           :table="table"
           @close="onCloseEditing"/>
@@ -83,7 +86,8 @@ export default {
       loading: true,
       items: [],
       editing: false,
-      editingTitle: ''
+      editingTitle: '',
+      editingItemId: null
     }
   },
   methods: {
@@ -103,9 +107,46 @@ export default {
       this.editingTitle = 'Создание новой записи'
       this.editing = true
     },
+    onEdit(record) {
+      this.editingTitle = 'Редактирование записи'
+      this.editingItemId = record.id
+      this.editing = true
+    },
     onCloseEditing() {
       this.editing = false
       this.updateList()
+    },
+    async onRemove(id) {
+      this.loading = true
+      await query('RemoveRecord', this.table, id)
+      this.updateList()
+    }
+  },
+  computed: {
+    extendedColumns() {
+      return [...this.columns, {
+        title: ' ',
+        width: 100,
+        align: 'center',
+        render: (h, params) => {
+          return h('Button', {
+            props: {
+              type: 'error',
+              size: 'small'
+            },
+            on: {
+              click: (ev) => {
+                event.stopPropagation()
+                this.$Modal.confirm({
+                  title: 'Удаление записи',
+                  content: 'Вы уверены, что хотите удалить эту запись?',
+                  onOk: () => this.onRemove(params.row.id)
+                });
+              }
+            }
+          }, 'Delete')
+        }
+      }]
     }
   },
   beforeMount() {

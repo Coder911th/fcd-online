@@ -25,20 +25,21 @@ module.exports = async function(tableName, item) {
     if (col != 'id') {
       columns.push(col)
       values.push(value)
-      keyValues.push(`${nextIndex == 2 ? '' : ','}"${col}" = $${nextIndex}`)
+      keyValues.push(`"${col}" = $${nextIndex}`)
+      nextIndex++;
     }
   }
 
   if (item.id === null) {
     // Вставляем новую запись
-    this.sql(`
+    await this.sql(`
       INSERT INTO ${tableName}(${columns.join(',')})
       VALUES(${values.map((_, index) => `$${index + 1}`).join(',')})
     `, ...values)
-  } else if (item.id instanceof Number){
-    this.sql(`
-      UPDATE ${tableName}(${columns.join(',')})
-      SET ${keyValues}
+  } else if (typeof item.id == 'number') {
+    await this.sql(`
+      UPDATE ${tableName}
+      SET ${keyValues.join(',')}
       WHERE "id" = $1
     `, item.id, ...values)
   } else {

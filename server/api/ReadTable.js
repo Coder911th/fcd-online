@@ -13,9 +13,10 @@ module.exports = async function(tableName, id) {
   `;
 
   if (id) {
-    query += 'WHERE id = $1'
-    return this.sql(query, id)
+    query += 'WHERE id = $1 ORDER BY id'
+    return (await this.sql(query, id))[0]
   }
 
+  query += 'ORDER BY id'
   return this.sql(query)
 }

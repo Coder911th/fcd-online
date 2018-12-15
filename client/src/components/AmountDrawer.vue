@@ -26,15 +26,9 @@ import query  from '../libs/query'
 
 export default {
   props: {
-    item: {
-      type: Object,
-      default() {
-        return {
-          id: null,
-          name: '',
-          short: ''
-        }
-      }
+    id: {
+      type: Number,
+      default: null
     },
     table: {
       type: String,
@@ -43,6 +37,11 @@ export default {
   },
   data() {
     return {
+      item: {
+        id: null,
+        name: '',
+        short: ''
+      },
       loading: true
     }
   },
@@ -62,6 +61,9 @@ export default {
     }
   },
   async beforeMount() {
+    if (this.id) {
+      this.item = await query('ReadTable', this.table, this.id)
+    }
     this.loading = false
   }
 }

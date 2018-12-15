@@ -51,8 +51,12 @@ module.exports = async function(req, res) {
       userRole: 'admin' // TODO: передавать роль текущего пользователя
     }, args)
   } catch(errMessage) {
-    config.error = errMessage instanceof Error ? 'Внутренняя ошибка сервера' : errMessage
-    console.log(errMessage)
+    if (errMessage instanceof Error) {
+      config.error = 'Внутренняя ошибка сервера'
+      console.log(errMessage)
+    } else {
+      config.error = errMessage;
+    }
   }
 
   res.send(config)
