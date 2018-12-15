@@ -23,13 +23,13 @@ export default {
   },
   computed: {
     price() {
-      return this.buyList.reduce((sum, buy) => sum + buy.getPrice(), 0)
+      return this.buyList.reduce((sum, buy) => sum + buy.getPrice(), 0).toFixed(2)
     },
     discount() {
-      return this.buyList.reduce((sum, buy) => sum + buy.getDiscount(), 0)
+      return this.buyList.reduce((sum, buy) => sum + buy.getDiscount(), 0).toFixed(2)
     },
     totalPrice() {
-      return this.buyList.reduce((sum, buy) => sum + buy.getTotalPrice(), 0)
+      return this.buyList.reduce((sum, buy) => sum + buy.getTotalPrice(), 0).toFixed(2)
     }
   }
 }

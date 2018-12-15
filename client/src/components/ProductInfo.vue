@@ -2,7 +2,7 @@
   <Card dis-hover>
     <p slot="title">{{ product ? product.name : 'Просматриваемый товар' }}</p>
     <Label label="Артикул" :width="80">{{ product ? product.code : '-' }}</Label>
-    <Label label="Цена" :width="80">{{ product ? product.price : '-' }} руб./шт.</Label>
+    <Label label="Цена" :width="80">{{ product ? product.price.toFixed(2) : '-' }} руб./шт.</Label>
     <Label label="Скидка" :width="80">{{ product ? product.discount * 100 : '-' }} %</Label>
     <Label label="Количество" :width="80">
       <Input class="ProductInfo__counter" v-model.number="amount" size="small" :disabled="!product">
