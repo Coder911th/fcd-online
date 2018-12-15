@@ -1,7 +1,7 @@
 <template>
   <div class="auth">
     <Card class="auth__window" dis-hover>
-      <p slot="title">Авторизация</p>
+      <p slot="title">Аутентификация</p>
       <Form
           ref="authForm"
           :model="authData"

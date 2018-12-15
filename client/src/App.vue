@@ -3,7 +3,10 @@
     <Layout>
       <Header v-if="!page.hideHeader">
         <div class="app__menu">
-          <div class="layout-logo" @click="goTo('/')"></div>
+          <div class="app__logoBlock">
+            <div class="app__logo" @click="goTo('/')"></div>
+            <div class="app__title">{{ page.title }}</div>
+          </div>
           <Menu
               v-if="!page.hideActions"
               mode="horizontal"
@@ -97,28 +100,24 @@ export default {
   margin: 0 auto;
 }
 
-.layout{
-    border: 1px solid #d7dde4;
-    background: #f5f7f9;
-    position: relative;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.layout-logo {
-    width: 50px;
-    height: 50px;
-    background: url(../public/logo.svg) no-repeat center center / auto 100%;
-    cursor: pointer;
-}
-
-.asd {
+.app__logoBlock {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
 }
 
-/* .layout-nav {
-  width: 420px;
-  margin: 0 auto;
-} */
+.app__logo {
+  width: 50px;
+  height: 50px;
+  background: url(../public/logo.svg) no-repeat center center / auto 100%;
+  cursor: pointer;
+}
+
+.app__title {
+  margin-left: 15px;
+  color: #fff;
+  font-variant: small-caps;
+  font-size: 28px;
+  position: relative;
+  top: 5px;
+}
 </style>
