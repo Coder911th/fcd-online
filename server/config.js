@@ -9,5 +9,14 @@ module.exports = {
     password: '731586fb0e1acb56278d4ffdebc1d2ab52cd61fdff34e6304f3520611e87f33e',
     port: 5432,
     ssl: true
+  },
+  /**
+   * Права на доступ к таблицам
+   */
+  RIGHTS: {
+    products: {
+      read: ['cashier', 'admin'],
+      write: ['admin']
+    }
   }
 }

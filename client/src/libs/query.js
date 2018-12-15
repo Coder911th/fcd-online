@@ -25,6 +25,6 @@ export default async function query(methodName, ...args) {
   const address = `${protocol}//${hostname}${port}/api/${methodName}?${JSON.stringify(args)}`
   const response = await fetch(address)
   const json = await response.json()
-  if (json.error) throw new Error(json.error)
+  if (json.error) throw json.error
   return json.result
 }

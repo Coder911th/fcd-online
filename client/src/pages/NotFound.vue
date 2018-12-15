@@ -4,7 +4,8 @@
 
 <script>
 export default {
-  title: 'Страница не найдена'
+  title: 'Страница не найдена',
+  hideActions: true
 }
 </script>
 

@@ -6,6 +6,7 @@
  */
 
 const fs = require('fs')
+const sql = require('./query')
 const exists = async filename => new Promise(resolve => fs.exists(filename, resolve))
 const MAX_ARGS_SERIALIZED_LENGTH = 10000
 
@@ -41,12 +42,16 @@ module.exports = async function(req, res) {
     return res.send({error: 'Аргументы должны быть переданы в формате JSON'})
   }
 
-  const result = require(`./api/${methodName}.js`)(...args, res, req)
   const config = {}
-  if (result instanceof Error) {
-    config.error = result.message
-  } else {
-    config.result = result
+  try {
+    config.result = await require(`./api/${methodName}.js`).apply({
+      request: req,
+      response: res,
+      sql: sql,
+      userRole: 'admin' // TODO: передавать роль текущего пользователя
+    }, args)
+  } catch(errMessage) {
+    config.error = errMessage instanceof Error ? 'Внутренняя ошибка сервера' : errMessage
   }
 
   res.send(config)

@@ -43,6 +43,7 @@ import {required} from '../libs/validators'
 
 export default {
   title: 'Аутентификация',
+  hideHeader: true,
   data() {
     return {
       waiting: false,
@@ -73,7 +74,6 @@ export default {
 <style>
 .auth {
   display: flex;
-  height: 100vh;
   justify-content: center;
   align-items: center;
 }
@@ -81,6 +81,7 @@ export default {
 .auth__window {
   width: 300px;
   margin: 10px;
+  position: relative;
 }
 </style>
 

@@ -1,8 +1,34 @@
 <template>
   <div id="app">
-    <component
-        :is="page"
-        @changePage="goTo($event)"/>
+    <Layout>
+      <Header v-if="!page.hideHeader">
+        <div class="app__menu">
+          <div class="layout-logo" @click="goTo('/')"></div>
+          <Menu
+              v-if="!page.hideActions"
+              mode="horizontal"
+              theme="dark"
+              @on-select="goTo($event)">
+            <MenuItem
+                v-if="role == 'admin'"
+                name="/admin">
+              <Icon type="md-build"/>Администратирование
+            </MenuItem>
+            <MenuItem name="/auth">
+              <Icon type="md-exit"/>Выйти
+            </MenuItem>
+          </Menu>
+        </div>
+      </Header>
+      <Content>
+        <component
+            :style="{
+              'min-height': page.hideHeader ? '100vh' : 'calc(100vh - 64px)'
+            }"
+            :is="page"
+            @changePage="goTo($event)"/>
+      </Content>
+    </Layout>
   </div>
 </template>
 
@@ -11,7 +37,8 @@ export default {
   name: 'app',
   data() {
     return {
-      page: null
+      page: null,
+      role: 'admin'
     }
   },
   methods: {
@@ -60,4 +87,38 @@ export default {
 </script>
 
 <style>
+.app__menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 920px;
+  height: 60px;
+  margin: 0 auto;
+}
+
+.layout{
+    border: 1px solid #d7dde4;
+    background: #f5f7f9;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.layout-logo {
+    width: 50px;
+    height: 50px;
+    background: url(../public/logo.svg) no-repeat center center / auto 100%;
+    cursor: pointer;
+}
+
+.asd {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .layout-nav {
+  width: 420px;
+  margin: 0 auto;
+} */
 </style>

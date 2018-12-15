@@ -1,9 +1,7 @@
 <template>
   <AdminPage
       :columns="columns"
-      list="GetAllProducts"
-      read="ReadProduct"
-      save="SaveProduct"/>
+      table="products"/>
 </template>
 
 <script>
@@ -12,8 +10,9 @@ export default {
     return {
       columns: [
         {
-          title: 'Идентификатор товара',
-          key: 'id'
+          title: 'Идентификатор',
+          key: 'id',
+          width: 130
         },
         {
           title: 'Штрих-код',
@@ -40,7 +39,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

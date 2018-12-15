@@ -8,7 +8,9 @@
   "scripts": {
     "server": "node server/server-core.js",
     "build": "cd client && npm run build",
-    "dev": "start npm run server && cd client && npm run serve"
+    "dev": "start npm run server && cd client && npm run serve",
+    "query": "node \"server/database/Execute SQL Query.js\"",
+    "bl": "node \"server/database/Execute BL.js\""
   },
   "dependencies": {
     "@vue/cli-plugin-babel": "^3.1.1",
