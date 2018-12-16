@@ -3,6 +3,7 @@
     <Layout class="admin-page__layout">
       <Sider width="230">
         <Menu
+            class="admin-page__menu"
             theme="dark"
             width="230"
             :active-name="currentPath"
@@ -45,7 +46,6 @@
       <Content>
         <Card class="admin-page__content" dis-hover>
           <Table
-              highlight-row
               :columns="extendedColumns"
               :data="items"
               :no-data-text="noDataText"
@@ -105,6 +105,7 @@ export default {
     },
     createNewItem() {
       this.editingTitle = 'Создание новой записи'
+      this.editingItemId = 0
       this.editing = true
     },
     onEdit(record) {
@@ -172,5 +173,9 @@ export default {
   float: right;
   position: relative;
   top: -1.5px;
+}
+
+.admin-page__menu {
+  height: calc(100vh - 84px);
 }
 </style>
