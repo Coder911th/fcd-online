@@ -7,7 +7,7 @@
     <Label label="Со скидкой" :width="80">{{ product ? (product.price * (1 - product.discount)).toFixed(2) : '-' }} руб./{{ amountType }}</Label>
     <Label label="Количество" :width="80">
       <Input class="ProductInfo__counter" v-model.number="amount" size="small" :disabled="!product">
-          <Button slot="prepend" icon="md-remove" size="small" @click="amount--" :disabled="!product"/>
+          <Button slot="prepend" icon="md-remove" size="small" @click="reduceAmount" :disabled="!product"/>
           <Button slot="append" icon="md-add" size="small" @click="amount++" :disabled="!product"/>
       </Input>
     </Label>
@@ -60,7 +60,10 @@ export default {
     },
     removeBuy() {
       this.$emit('removeBuy', this.product)
-    }  
+    },
+    reduceAmount() {
+      if (this.amount != 0 ) this.amount--
+    }
   }, 
   async beforeMount() {
     this.amountTypes = await query('ReadTable', 'amount_types')
