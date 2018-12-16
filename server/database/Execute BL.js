@@ -1,7 +1,7 @@
-const method = require('../api/TableFormat')
+const method = require('../api/ReadTable')
 const sql = require('../query')
 
 method.call({
   userRole: 'admin',
   sql: sql
-}, 'sessions').then(console.log, console.log)
+}, 'users').then(console.log, console.log)

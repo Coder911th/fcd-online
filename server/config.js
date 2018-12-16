@@ -22,5 +22,13 @@ module.exports = {
       read: ['cashier', 'admin'],
       write: ['admin']
     },
+    users: {
+      read: ['cashier', 'admin'],
+      write: ['admin']
+    },
+    roles: {
+      read: ['cashier', 'admin'],
+      write: ['admin']
+    }
   }
 }
