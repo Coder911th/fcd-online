@@ -57,7 +57,7 @@
     <Drawer
         v-model="editing"
         :title="editingTitle"
-        :width="250"
+        :width="300"
         :mask-closable="false">
       <RecordDrawer
           v-if="editing"

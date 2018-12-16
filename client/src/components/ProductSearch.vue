@@ -37,16 +37,9 @@ export default {
           key: 'name'
         },
         {
-          title: 'Цена',
-          key: 'price'
-        },
-        {
           title: 'Штрих-код',
-          key: 'barcode'
-        },
-        {
-          title: 'Скидка',
-          key: 'discount'
+          key: 'barcode',
+          width: 140
         }
       ]
     }
@@ -59,7 +52,6 @@ export default {
     }
   },
   async beforeMount() {
-    // Выкачиваем все товары из БД
     this.products = await query('ReadTable', 'products')
     this.loading = false
   }
