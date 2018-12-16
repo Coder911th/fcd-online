@@ -15,7 +15,7 @@
             <MenuItem
                 v-if="role == 'admin'"
                 name="/admin">
-              <Icon type="md-build"/>Администратирование
+              <Icon type="md-build"/>Администрирование
             </MenuItem>
             <MenuItem name="/auth">
               <Icon type="md-exit"/>Выйти

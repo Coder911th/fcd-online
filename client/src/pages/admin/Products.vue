@@ -3,7 +3,7 @@ import AdminPage from '../../components/AdminPage'
 import ProductForm from '../../components/ProductForm'
 
 export default {
-  title: 'Администратирование',
+  title: 'Администрирование',
   extends: AdminPage,
   data() {
     return {

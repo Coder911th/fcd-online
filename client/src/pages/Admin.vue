@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  title: 'Администратирование',
+  title: 'Администрирование',
   beforeMount() {
     this.$emit('pageChanged', '/admin/products')
   }
