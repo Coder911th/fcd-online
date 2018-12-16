@@ -2,9 +2,9 @@
   <Card dis-hover>
     <p slot="title">{{ product ? product.name : 'Просматриваемый товар' }}</p>
     <Label label="Штрих-код" :width="80">{{ product ? product.barcode : '-' }}</Label>
-    <Label label="Без скидки" :width="80">{{ product ? product.price.toFixed(2) : '-' }} руб./шт.</Label>
+    <Label label="Без скидки" :width="80">{{ product ? product.price.toFixed(2) : '-' }} руб./{{ productType }}</Label>
     <Label label="Скидка" :width="80">{{ product ? product.discount * 100 : '-' }} %</Label>
-    <Label label="Со скидкой" :width="80">{{ product ? (product.price * (1 - product.discount)).toFixed(2) : '-' }} руб./шт.</Label>
+    <Label label="Со скидкой" :width="80">{{ product ? (product.price * (1 - product.discount)).toFixed(2) : '-' }} руб./{{ productType }}</Label>
     <Label label="Количество" :width="80">
       <Input class="ProductInfo__counter" v-model.number="amount" size="small" :disabled="!product">
           <Button slot="prepend" icon="md-remove" size="small" @click="amount--" :disabled="!product"/>
@@ -35,13 +35,19 @@ export default {
   },
   data() {
     return {
-      amount: 1
+      amount: 1,
+      productsType: [ {id: 8, short: "шт."}, {id: 9, short: "кг."} ]
     }
   },
   computed: {
     sum() {
       return this.product
         ? (this.product.price * (1 - this.product.discount) * this.amount).toFixed(2)
+        : '-'
+    },
+    productType() {
+      return this.product
+        ? (this.productsType.find(item => item.id == this.product.amount_type_id)).short
         : '-'
     }
   },
