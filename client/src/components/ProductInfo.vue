@@ -6,8 +6,8 @@
     <Label label="Скидка" :width="80">{{ product ? product.discount * 100 : '-' }} %</Label>
     <Label label="Со скидкой" :width="80">{{ product ? (product.price * (1 - product.discount)).toFixed(2) : '-' }} руб./{{ amountType }}</Label>
     <Label label="Количество" :width="80">
-      <Input class="ProductInfo__counter" v-model.number="amount" size="small" :disabled="!product">
-          <Button slot="prepend" icon="md-remove" size="small" @click="amount--" :disabled="!product"/>
+      <Input class="ProductInfo__counter" v-model.number="amount" size="small" :disabled="!product" @change="changeAmount">
+          <Button slot="prepend" icon="md-remove" size="small" @click="amount--" :disabled="!product || amount <= 1"/>
           <Button slot="append" icon="md-add" size="small" @click="amount++" :disabled="!product"/>
       </Input>
     </Label>
@@ -41,7 +41,7 @@ export default {
       amountTypes: []
     }
   },
-  computed: {
+  computed: {    
     sum() {
       return this.product
         ? (this.product.price * (1 - this.product.discount) * this.amount).toFixed(2)
@@ -51,6 +51,12 @@ export default {
       return this.product
         ? (this.amountTypes.find(item => item.id == this.product.amount_type_id)).short
         : '-'
+    },
+    changeAmount() {
+      return this.amount = this.amount >= 1 
+        ? this.amount
+        : 1
+      // ToDo: сдалать, чтобы в input обновлялось новое значение
     }
   },
   methods: {
@@ -60,7 +66,7 @@ export default {
     },
     removeBuy() {
       this.$emit('removeBuy', this.product)
-    }  
+    }
   }, 
   async beforeMount() {
     this.amountTypes = await query('ReadTable', 'amount_types')
