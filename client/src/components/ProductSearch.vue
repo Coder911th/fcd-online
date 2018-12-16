@@ -3,14 +3,14 @@
     <Input
         clearable
         enter-button
-        v-model="search"
-        placeholder="Введите название продукта"/>
+        v-model.trim="search"
+        placeholder="Введите название или штрих-код товара"/>
     <Table
         :loading="loading"
         highlight-row
         :columns="columns"
         :data="filteredProducts"
-        no-data-text="Список товаров пуст"
+        :no-data-text="search.length ? 'Не найдено ни одного товара' : 'Список товаров пуст'"
         style="margin-top: 10px"
         @on-row-click="$emit('select', $event)"/>
   </div>

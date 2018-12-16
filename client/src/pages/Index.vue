@@ -17,7 +17,9 @@
               :hideList="hideList"
               @select="onSelectedProduct"/>
         </TabPane>
-        <TabPane label="Корзина" name="basket">В разработке...</TabPane>
+        <TabPane label="Корзина" name="basket">
+          <ProductBasket :buys="buyList"/>
+        </TabPane>
       </Tabs>
     </Card>
   </div>
