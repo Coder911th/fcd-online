@@ -76,8 +76,7 @@ import query from '../libs/query'
 export default {
   props: {
     currentPath: String,
-    pageTitle: String,
-    format: Object
+    pageTitle: String
   },
   data() {
     return {
