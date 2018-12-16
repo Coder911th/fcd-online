@@ -1,6 +1,6 @@
 <script>
 import AdminPage from '../../components/AdminPage'
-import AmountDrawer from '../../components/AmountDrawer'
+import AmountForm from '../../components/AmountForm'
 
 export default {
   title: 'Администратирование',
@@ -8,7 +8,12 @@ export default {
   data() {
     return {
       table: 'amount_types',
-      editingTemplate: AmountDrawer,
+      editingTemplate: AmountForm,
+      format: {
+        id: null,
+        name: '',
+        short: ''
+      },
       columns: [
         {
           title: 'Идентификатор',

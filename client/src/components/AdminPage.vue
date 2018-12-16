@@ -59,12 +59,13 @@
         :title="editingTitle"
         :width="250"
         :mask-closable="false">
-      <component
+      <RecordDrawer
           v-if="editing"
           :id="editingItemId"
-          :is="editingTemplate"
+          :form="editingTemplate"
           :table="table"
-          @close="onCloseEditing"/>
+          @close="onCloseEditing"
+          :format="format"/>
     </Drawer>
   </div>
 </template>
@@ -75,7 +76,8 @@ import query from '../libs/query'
 export default {
   props: {
     currentPath: String,
-    pageTitle: String
+    pageTitle: String,
+    format: Object
   },
   data() {
     return {
