@@ -2,9 +2,9 @@
   <Card dis-hover>
     <p slot="title">{{ product ? product.name : 'Просматриваемый товар' }}</p>
     <Label label="Штрих-код" :width="80">{{ product ? product.barcode : '-' }}</Label>
-    <Label label="Без скидки" :width="80">{{ product ? product.price.toFixed(2) : '-' }} руб./{{ productType }}</Label>
+    <Label label="Без скидки" :width="80">{{ product ? product.price.toFixed(2) : '-' }} руб./{{ amountType }}</Label>
     <Label label="Скидка" :width="80">{{ product ? product.discount * 100 : '-' }} %</Label>
-    <Label label="Со скидкой" :width="80">{{ product ? (product.price * (1 - product.discount)).toFixed(2) : '-' }} руб./{{ productType }}</Label>
+    <Label label="Со скидкой" :width="80">{{ product ? (product.price * (1 - product.discount)).toFixed(2) : '-' }} руб./{{ amountType }}</Label>
     <Label label="Количество" :width="80">
       <Input class="ProductInfo__counter" v-model.number="amount" size="small" :disabled="!product">
           <Button slot="prepend" icon="md-remove" size="small" @click="amount--" :disabled="!product"/>
@@ -21,6 +21,7 @@
 
 <script>
 import Buy from '../libs/Buy'
+import query from '../libs/query'
 
 export default {
   props: {
@@ -36,7 +37,8 @@ export default {
   data() {
     return {
       amount: 1,
-      productsType: [ {id: 8, short: "шт."}, {id: 9, short: "кг."} ]
+      loading: true,
+      amountTypes: []
     }
   },
   computed: {
@@ -45,9 +47,9 @@ export default {
         ? (this.product.price * (1 - this.product.discount) * this.amount).toFixed(2)
         : '-'
     },
-    productType() {
+    amountType() {
       return this.product
-        ? (this.productsType.find(item => item.id == this.product.amount_type_id)).short
+        ? (this.amountTypes.find(item => item.id == this.product.amount_type_id)).short
         : '-'
     }
   },
@@ -58,7 +60,11 @@ export default {
     },
     removeBuy() {
       this.$emit('removeBuy', this.product)
-    }
+    }  
+  }, 
+  async beforeMount() {
+    this.amountTypes = await query('ReadTable', 'amount_types')
+    this.loading = false
   }
 }
 </script>
