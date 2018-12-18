@@ -34,17 +34,17 @@ export default {
         {
           title: 'Штрих-код',
           key: 'barcode',
-          width: 140
+          width: 160
         },
         {
           title: 'Количество',
           key: 'amount',
-          width: 130
+          width: 140
         },
         {
           title: 'Цена',
           key: 'fullPrice',
-          width: 80
+          width: 90
         }
       ]
     }
@@ -65,4 +65,14 @@ export default {
 </script>
 
 <style>
+
+ td:nth-child(3) .ivu-table-cell,
+ .ivu-table th:nth-child(3),
+ td:nth-child(4) .ivu-table-cell,
+ .ivu-table th:nth-child(4),
+ td:nth-child(2) .ivu-table-cell,
+ .ivu-table th:nth-child(2)
+  {
+    text-align: center;
+  }
 </style>
