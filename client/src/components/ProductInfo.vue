@@ -6,6 +6,7 @@
     <Label label="Скидка" :width="80">{{ product ? product.discount * 100 : '-' }} %</Label>
     <Label label="Со скидкой" :width="80">{{ product ? (product.price * (1 - product.discount)).toFixed(2) : '-' }} руб./{{ amountType }}</Label>
     <Label label="Количество" :width="80">
+
       <Input class="ProductInfo__counter" v-model.number="amount" v-on:input="chageAmount" size="small" :disabled="!product">
           <Button slot="prepend" icon="md-remove" size="small" @click="reduceAmount" :disabled="!product"/>
           <Button slot="append" icon="md-add" size="small" @click="amount++" :disabled="!product"/>
@@ -41,7 +42,7 @@ export default {
       amountTypes: []
     }
   },
-  computed: {
+  computed: {    
     sum() {
       return this.product
         ? (this.product.price * (1 - this.product.discount) * this.amount).toFixed(2)
