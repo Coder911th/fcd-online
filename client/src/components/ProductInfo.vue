@@ -8,7 +8,7 @@
     <Label label="Количество" :width="80">
 
       <Input class="ProductInfo__counter" v-model.number="amount" v-on:input="chageAmount" size="small" :disabled="!product">
-          <Button slot="prepend" icon="md-remove" size="small" @click="reduceAmount" :disabled="!product"/>
+          <Button slot="prepend" icon="md-remove" size="small" @click="reduceAmount" :disabled="!product || amount<=1"/>
           <Button slot="append" icon="md-add" size="small" @click="amount++" :disabled="!product"/>
       </Input>
     </Label>
@@ -58,7 +58,7 @@ export default {
         return this.amount
       },
       set: function(newValue) {
-        (newValue < 0) ? this.amount = 0 : this.amount = newValue
+        (newValue < 1) ? this.amount = 1 : this.amount = newValue
       }
     }
   },
