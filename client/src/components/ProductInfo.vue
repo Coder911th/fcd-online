@@ -6,7 +6,7 @@
     <Label label="Скидка" :width="80">{{ product ? product.discount * 100 : '-' }} %</Label>
     <Label label="Со скидкой" :width="80">{{ product ? (product.price * (1 - product.discount)).toFixed(2) : '-' }} руб./{{ amountType }}</Label>
     <Label label="Количество" :width="80">
-      <Input class="ProductInfo__counter" v-model.number="amount" size="small" :disabled="!product">
+      <Input class="ProductInfo__counter" v-model.number="amount" v-on:input="chageAmount" size="small" :disabled="!product">
           <Button slot="prepend" icon="md-remove" size="small" @click="reduceAmount" :disabled="!product"/>
           <Button slot="append" icon="md-add" size="small" @click="amount++" :disabled="!product"/>
       </Input>
@@ -51,6 +51,14 @@ export default {
       return this.product
         ? (this.amountTypes.find(item => item.id == this.product.amount_type_id)).short
         : '-'
+    },
+    amount: {
+      get: function() {
+        return this.amount
+      },
+      set: function(newValue) {
+        (newValue < 0) ? this.amount = 0 : this.amount = newValue
+      }
     }
   },
   methods: {
@@ -62,7 +70,10 @@ export default {
       this.$emit('removeBuy', this.product)
     },
     reduceAmount() {
-      if (this.amount != 0 ) this.amount--
+      if (this.amount > 1 ) this.amount--
+    },
+    chageAmount() {
+      if (this.amount < 1) this.amount = 1
     }
   }, 
   async beforeMount() {
