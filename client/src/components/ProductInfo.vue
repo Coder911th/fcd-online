@@ -58,7 +58,7 @@ export default {
         return this.amount
       },
       set: function(newValue) {
-        (newValue < 1) ? this.amount = 1 : this.amount = newValue
+        (newValue < 0) ? this.amount = 0 : this.amount = newValue
       }
     }
   },
@@ -74,7 +74,7 @@ export default {
       if (this.amount > 1 ) this.amount--
     },
     chageAmount() {
-      if (this.amount < 1) this.amount = 1
+      if (this.amount < 0 || typeof this.amount != 'number') this.amount = 0
     }
   }, 
   async beforeMount() {
