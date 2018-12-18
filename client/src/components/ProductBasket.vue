@@ -39,11 +39,12 @@ export default {
         {
           title: 'Количество',
           key: 'amount',
-          width: 110
+          width: 130
         },
         {
           title: 'Цена',
-          key: 'fullPrice'
+          key: 'fullPrice',
+          width: 80
         }
       ]
     }
@@ -64,5 +65,4 @@ export default {
 </script>
 
 <style>
-
 </style>
