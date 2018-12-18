@@ -8,8 +8,17 @@
     <div class="ProductPayment__buttons">
       <Button
           type="primary"
-          shape="circle">Оплатить</Button>
+          shape="circle"
+          @click="modal = true">Оплатить</Button>
     </div>
+    <Modal
+        v-model="modal"
+        title="Оплата прошла успешно!"
+        @on-ok="ok"
+        @on-cancel="cancel"
+        cancel-text="Отмена">
+        <p>Перейти к созданию нового чека?</p>
+    </Modal>
   </Card>
 </template>
 
@@ -30,6 +39,17 @@ export default {
     },
     totalPrice() {
       return this.buyList.reduce((sum, buy) => sum + buy.getTotalPrice(), 0).toFixed(2)
+    }
+  },
+  data () {
+    return {
+      modal: false
+    }
+  },
+  methods: {
+    ok (buyList) {
+      this.$parent.buyList = [];
+      this.$Message.info('Новый чек');
     }
   }
 }
