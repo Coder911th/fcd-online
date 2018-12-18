@@ -58,7 +58,6 @@ import {required} from '../libs/validators'
 export default {
   title: 'Аутентификация',
   hideHeader: true,
-  el: '#example-3',
   data() {
     return {
 	  
