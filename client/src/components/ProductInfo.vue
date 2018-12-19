@@ -15,7 +15,7 @@
     <Label label="Сумма" :width="80" highlight>{{ sum }} Руб.</Label>
     <Label>
       <Button v-if="mode == 'add'" type="primary" shape="circle" @click="addNewBuy">Добавить</Button>
-      <Button v-else-if ="mode == 'remove'" shape="circle" @click="">Удалить</Button>
+      <Button v-else-if ="mode == 'remove'" shape="circle" @click="removeBuy">Удалить</Button>
     </Label>
   </Card>
 </template>
@@ -69,6 +69,7 @@ export default {
     },
     removeBuy() {
       this.$emit('removeBuy', this.product)
+      //this.$parent.buyList.splice(this.$parent.buyList.indexOf(this.product), 1)
     },
     reduceAmount() {
       if (this.amount > 1 ) this.amount--
