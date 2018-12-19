@@ -8,7 +8,8 @@
           @newBuy="onNewBuy"/>
       <ProductPayment
           class="Index__block"
-          :buyList="buyList"/>
+          :buyList="buyList"
+          @pay="onPayed"/>
     </div>
     <Card class="Index__main Index__block" dis-hover>
       <Tabs v-model="selectedTab">
@@ -62,6 +63,12 @@ export default {
       this.selectedProduct = null
       this.buyList.push($event)
       this.currentProductMode = null
+    },
+    onPayed() {
+      this.buyList = [];
+      this.selectedProduct = null;
+      this.currentProductMode = null;
+      this.selectedTab = 'all-products'
     }
   },
   computed: {
