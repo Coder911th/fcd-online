@@ -25,7 +25,8 @@ export default {
         },
         {
           title: 'Штрих-код',
-          key: 'barcode' 
+          key: 'barcode',
+          width: 130
         },
         {
           title: 'Название',
@@ -33,15 +34,18 @@ export default {
         },
         {
           title: 'Цена',
-          key: 'price'
+          key: 'price',
+          width: 120
         },
         {
           title: 'Скидка',
-          key: 'discount'
+          key: 'discount',
+          width: 80
         },
         {
           title: 'Единицы',
-          key: 'amount_type_id'
+          key: 'amount_type_id',
+          width: 100
         }
       ]
     }
