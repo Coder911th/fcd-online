@@ -47,8 +47,10 @@ export default {
     }
   },
   methods: {
-    ok (buyList) {
+    ok () {
       this.$parent.buyList = [];
+      this.$parent.selectedProduct = null;
+      this.$parent.currentProductMode = null;
       this.$Message.info('Новый чек');
     }
   }
