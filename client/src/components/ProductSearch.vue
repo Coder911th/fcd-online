@@ -46,9 +46,10 @@ export default {
   },
   computed: {
     filteredProducts() {
+      let search = this.search.toLowerCase()
       return this.products.filter(product =>
         !this.hideList.find(item => item.id == product.id) &&
-        (product.name.toLowerCase().includes(this.search) || product.barcode == this.search))
+        (product.name.toLowerCase().includes(search) || product.barcode == search))
     }
   },
   async beforeMount() {
