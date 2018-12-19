@@ -6,6 +6,7 @@
     "node": "10.x"
   },
   "scripts": {
+    "postinstall": "npm run server",
     "server": "node server/server-core.js",
     "build": "cd client && npm run build",
     "dev": "start npm run server && cd client && npm run serve",
