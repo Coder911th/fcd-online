@@ -69,7 +69,6 @@ export default {
     },
     removeBuy() {
       this.$emit('removeBuy', this.product)
-      //this.$parent.buyList.splice(this.$parent.buyList.indexOf(this.product), 1)
     },
     reduceAmount() {
       if (this.amount > 1 ) this.amount--
