@@ -18,7 +18,9 @@
               @select="onSelectedProduct"/>
         </TabPane>
         <TabPane label="Корзина" name="basket">
-          <ProductBasket :buys="buyList"/>
+          <ProductBasket 
+              :buys="buyList"
+              @select="onSelectedProductBasket"/>
         </TabPane>
       </Tabs>
     </Card>
@@ -51,6 +53,10 @@ export default {
     onSelectedProduct($event) {
       this.selectedProduct = $event
       this.currentProductMode = 'add'
+    },
+    onSelectedProductBasket($event) {
+      this.selectedProduct = $event
+      this.currentProductMode = 'remove'
     },
     onNewBuy($event) {
       this.selectedProduct = null
