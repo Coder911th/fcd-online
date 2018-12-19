@@ -57,6 +57,10 @@ export default {
           name: buy.product.name,
           barcode: buy.product.barcode,
           amount: buy.amount,
+          amount_type_id: buy.product.amount_type_id,
+          id: buy.product.id,
+          discount: buy.product.discount,
+          price: buy.product.price,
           fullPrice: buy.getTotalPrice().toFixed(2)
         }))
     }
