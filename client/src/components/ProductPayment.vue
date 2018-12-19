@@ -9,6 +9,7 @@
       <Button
           type="primary"
           shape="circle"
+          :disabled="!buyList.length"
           @click="modal = true">Оплатить</Button>
     </div>
     <Modal
