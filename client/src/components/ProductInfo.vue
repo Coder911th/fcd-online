@@ -3,7 +3,7 @@
     <p slot="title">{{ product ? product.name : 'Просматриваемый товар' }}</p>
     <Label label="Штрих-код" :width="80">{{ product ? product.barcode : '-' }}</Label>
     <Label label="Без скидки" :width="80">{{ product ? product.price.toFixed(2) : '-' }} руб./{{ amountType }}</Label>
-    <Label label="Скидка" :width="80">{{ product ? product.discount * 100 : '-' }} %</Label>
+    <Label label="Скидка" :width="80">{{ product ? (product.discount * 100).toFixed(2) : '-' }} %</Label>
     <Label label="Со скидкой" :width="80">{{ product ? (product.price * (1 - product.discount)).toFixed(2) : '-' }} руб./{{ amountType }}</Label>
     <Label label="Количество" :width="80">
       <Input v-if="mode == 'remove'" class="ProductInfo__counter" v-model.number="product.amount" v-on:input="chageAmount" size="small" :disabled="mode == 'remove'">
@@ -17,7 +17,12 @@
     </Label>
     <Label label="Сумма" :width="80" highlight>{{ sum }} Руб.</Label>
     <Label>
-      <Button v-if="mode == 'add'" type="primary" shape="circle" @click="addNewBuy">Добавить</Button>
+      <Button
+          v-if="mode == 'add'"
+          type="primary"
+          shape="circle"
+          :disabled="sum == 0"
+          @click="addNewBuy">Добавить</Button>
       <Button v-else-if ="mode == 'remove'" shape="circle" @click="removeBuy">Удалить</Button>
     </Label>
   </Card>

@@ -1,9 +1,9 @@
 <template>
   <Card dis-hover>
     <Form>
-      <Label label="Без скидки">{{ price }} Руб.</Label>
-      <Label label="Скидка">{{ discount }} Руб.</Label>
-      <Label label="К оплате">{{ totalPrice }} Руб.</Label>
+      <Label :width="80" label="Без скидки">{{ price }} Руб.</Label>
+      <Label :width="80" label="Скидка">{{ discount }} Руб.</Label>
+      <Label :width="80" label="К оплате">{{ totalPrice }} Руб.</Label>
     </Form>
     <div class="ProductPayment__buttons">
       <Button
@@ -51,7 +51,7 @@ export default {
       this.$parent.buyList = [];
       this.$parent.selectedProduct = null;
       this.$parent.currentProductMode = null;
-      this.$Message.info('Новый чек');
+      this.$Message.success('Новый чек');
     }
   }
 }
