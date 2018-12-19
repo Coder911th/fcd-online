@@ -20,9 +20,11 @@
           <Input
               :disabled="waiting"
               v-model="authData.password"
-              :type="pass"
+              :type="passwordFieldType"
               placeholder="Введите пароль"
-              @on-enter="auth"/>
+              @on-enter="auth"
+              :icon="passwordEyeIcon"
+              @on-click="changePasswordFieldMode"/>
         </FormItem>
         <FormItem>
           <Button
@@ -35,17 +37,6 @@
             <span v-else>Войти</span>
           </Button>
         </FormItem>
-		<FormItem>
-          <Button
-              long
-              type="primary"
-              shape="circle"
-              :loading="waiting"
-              @click="showPass">
-            <span v-if="waiting">Loading...</span>
-            <span v-else>{{buttShow}}</span>
-          </Button>
-		</FormItem>
       </Form>
     </Card>
   </div>
@@ -60,15 +51,13 @@ export default {
   hideHeader: true,
   data() {
     return {
-	  
       waiting: false,
-	  pass: "password",
-	  buttShow: "Показать пароль",
+      passwordFieldType: "password",
+      passwordEyeIcon: 'md-eye-off',
       authData: {
         login: '',
         password: '',
       },
-	  
       validationRules: {
         login: [{ validator: required }],
         password: [{ validator: required }],
@@ -87,20 +76,19 @@ export default {
         }
       }
     },
-	async showPass() {
-		if (this.pass == "password"){
-		this.pass = "text"
-		this.buttShow = "Скрыть пароль"
-		
-		}
-		else {
-		this.pass = "password"
-		this.buttShow = "Показать пароль"
-		}
-	}
+    changePasswordFieldMode() {
+      if (this.passwordFieldType == 'password') {
+        this.passwordFieldType = 'text'
+        this.passwordEyeIcon = 'md-eye'
+      } else {
+        this.passwordFieldType = 'password'
+        this.passwordEyeIcon = 'md-eye-off'
+      }
+	  }
   }
 }
 </script>
+
 <style>
 .auth {
   display: flex;
@@ -128,6 +116,4 @@ export default {
   margin: 0 0 0 18px;
   font-size: 28px;
 }
-
 </style>
-
